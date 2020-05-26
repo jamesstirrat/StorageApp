@@ -30,7 +30,7 @@ import AsyncStorage from '@react-native-community/async-storage';
 export default class App extends React.Component {
     render(){
         return(
-            <View>
+            <SafeAreaView styles={styles.container}>
                 <Text>Welcome! Store some data:</Text>
                 <TouchableOpacity onPress={this.storeData}>
                     <Text>Store Data</Text>
@@ -39,12 +39,11 @@ export default class App extends React.Component {
                 <TouchableOpacity onPress={this.getData}>
                     <Text>Read Data</Text>
                 </TouchableOpacity>
-            </View>
+            </SafeAreaView>
             )
     }
 
-//store string data
-    const storeData = async (value) => {
+    storeData = async (value) => {
       try {
         await AsyncStorage.setItem('setting', 'v.1.0.1');
         alert('saved');
@@ -89,40 +88,9 @@ export default class App extends React.Component {
 }
 
 const styles = StyleSheet.create({
-  scrollView: {
-    backgroundColor: Colors.lighter,
-  },
-  engine: {
-    position: 'absolute',
-    right: 0,
-  },
-  body: {
-    backgroundColor: Colors.white,
-  },
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-    color: Colors.black,
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-    color: Colors.dark,
-  },
-  highlight: {
-    fontWeight: '700',
-  },
-  footer: {
-    color: Colors.dark,
-    fontSize: 12,
-    fontWeight: '600',
-    padding: 4,
-    paddingRight: 12,
-    textAlign: 'right',
+  container: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 });
